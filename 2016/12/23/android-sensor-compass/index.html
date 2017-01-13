@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://arobot.github.io">
+  <title>Android 传感器学习（一）——指南针的实现 | 罗威的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Always make sure to disable sensors you don’t need, especially when your activity is paused. Failing to do so can drain the battery in just a few hours. Note that the system will not disable sensors">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 传感器学习（一）——指南针的实现">
+<meta property="og:url" content="http://arobot.github.io/2016/12/23/android-sensor-compass/index.html">
+<meta property="og:site_name" content="罗威的博客">
+<meta property="og:description" content="Always make sure to disable sensors you don’t need, especially when your activity is paused. Failing to do so can drain the battery in just a few hours. Note that the system will not disable sensors">
+<meta property="og:image" content="http://arobot.github.io/images/android/sensor/axis_globe.png">
+<meta property="og:updated_time" content="2017-01-10T08:51:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 传感器学习（一）——指南针的实现">
+<meta name="twitter:description" content="Always make sure to disable sensors you don’t need, especially when your activity is paused. Failing to do so can drain the battery in just a few hours. Note that the system will not disable sensors">
+<meta name="twitter:image" content="http://arobot.github.io/images/android/sensor/axis_globe.png">
+  
+    <link rel="alternative" href="/atom.xml" title="罗威的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/extras/lolipop.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/images/extras/avatar.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">罗威</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">间歇性神经失常</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="http://github.com/arobot" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="http://zhihu.com/people/arobot" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">罗威</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/images/extras/avatar.png" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">罗威</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">间歇性神经失常</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="http://github.com/arobot" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="http://zhihu.com/people/arobot" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-android-sensor-compass" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android 传感器学习（一）——指南针的实现
+    </h1>
+  
+
+        <a href="/2016/12/23/android-sensor-compass/" class="archive-article-date">
+  	<time datetime="2016-12-23T01:53:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-23</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Always make sure to disable sensors you don’t need, especially when your activity is paused. Failing to do so can drain the battery in just a few hours. Note that the system will not disable sensors automatically when the screen turns off.<br><em>确保在你不需要使用传感器的时候关掉它，特别是在 Activity 暂停的时候。如若不然，几个小时就会耗尽电池电量。请注意，系统在关闭屏幕的时候是不会自动停止传感器的。</em><br><strong>Google APIs</strong> – <a href="https://developer.android.google.cn/reference/android/hardware/SensorManager.html" target="_blank" rel="external">SensorManager</a></p>
+</blockquote>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>智能手机经过近十年的发展，机身上集成了多种传感器（Sensor），一些传感器是基于硬件直接得出结果，另一些则是通过软件复合运算得出的。常见的重力计、陀螺仪以及距离感应计都属于硬件传感器，而方向计则是通过复合计算得出结果，属于软件传感器。</p>
+<a id="more"></a>
+<table>
+<thead>
+<tr>
+<th>Sensor</th>
+<th>Type</th>
+<th>Description</th>
+<th>Common Uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TYPE_ACCELEROMETER</td>
+<td>硬件</td>
+<td>测量设备在三个物理轴(x,y,z)上的加速度（m/s²），包括重力</td>
+<td>运动检测（摇动，倾斜等）</td>
+</tr>
+<tr>
+<td>TYPE_AMBIENT_TEMPERATURE</td>
+<td>硬件</td>
+<td>测量设备周围空间的摄氏温度（℃）</td>
+<td>监测空气温度</td>
+</tr>
+<tr>
+<td>TYPE_GRAVITY</td>
+<td>硬件或软件</td>
+<td>测量施加在设备三个物理轴向(x,y,z)的重力加速度(m/s²)</td>
+<td>运动检测（摇动，倾斜等）</td>
+</tr>
+<tr>
+<td>TYPE_GYROSCOPE</td>
+<td>硬件</td>
+<td>测量设备围绕三个物理轴(x,y,z)的旋转速率(rad/s)</td>
+<td>旋转检测（旋转，转动等）</td>
+</tr>
+<tr>
+<td>TYPE_LIGHT</td>
+<td>硬件</td>
+<td>测量环境光亮度等级流明(lx)</td>
+<td>调节屏幕亮度</td>
+</tr>
+<tr>
+<td>TYPE_LINEAR_ACCELERATION</td>
+<td>硬件或软件</td>
+<td>测量设备在三个物理轴(x,y,z)上的加速度（m/s²），包括重力</td>
+<td>检测单个轴的加速度</td>
+</tr>
+<tr>
+<td>TYPE_MAGNETIC_FIELD</td>
+<td>硬件</td>
+<td>检测沿三个物理轴(x,y,z)的磁场强度μT</td>
+<td>创建指南针</td>
+</tr>
+<tr>
+<td>TYPE_ORIENTATION</td>
+<td>软件</td>
+<td>测量设备围绕三个物理轴(x,y,z)的旋转度。API 等级大于3的可以通过调用重力计和磁场计获取倾斜矩阵和旋转矩阵，再结合 getRotationMatrix() 方法获取方向矩阵</td>
+<td>确定设备位置</td>
+</tr>
+<tr>
+<td>TYPE_PRESSURE</td>
+<td>硬件</td>
+<td>测量周围的空气压力(hPa or mbar)</td>
+<td>检测气压变化</td>
+</tr>
+<tr>
+<td>TYPE_PROXIMITY</td>
+<td>硬件</td>
+<td>测量一个物件到屏幕的距离(cm).该传感器通常用于确定手机是否靠近人耳</td>
+<td>通话时的设备位置</td>
+</tr>
+<tr>
+<td>TYPE_RELATIVE_HUMIDITY</td>
+<td>硬件</td>
+<td>测量周围的湿度(%)</td>
+<td>检测露点，绝对和相对湿度</td>
+</tr>
+<tr>
+<td>TYPE_ROTATION_VECTOR</td>
+<td>软件或硬件</td>
+<td>通过提供设备的三个旋转矢量元素确定设备的方向</td>
+<td>运动和旋转检测</td>
+</tr>
+</tbody>
+</table>
+<h1 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h1><h2 id="获取传感器"><a href="#获取传感器" class="headerlink" title="获取传感器"></a>获取传感器</h2><p>要使用传感器，需要先获取手机的传感器服务。通过<code>getSystemService</code>创建一个<code>SensorManager</code>实例:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> SensorManager mSensorManager;</div><div class="line">...</div><div class="line">mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);</div></pre></td></tr></table></figure></p>
+<p>接着，可以传入<code>TYPE_ALL</code>参数获取传感器列表：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">List&lt;Sensor&gt; deviceSensors = mSensorManager.getSensorList(Sensor.TYPE_ALL);</div></pre></td></tr></table></figure></p>
+<p>如果你想获取指定类型的传感器列表，可以通过传入其他的类型常量，如<code>TYPE_GYROSCOPE</code>或者<code>TYPE_GRAVITY</code>来取代<code>TYPE_ALL</code>.<br>所有支持的传感器，并不会在所有的手机上都存在，类似于气压计这样的传感器，目前也只在高端机型上存在。所以在调取传感器的时候，需要对其做代码检查，例如<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> SensorManager mSensorManager;</div><div class="line">...</div><div class="line">mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);</div><div class="line"><span class="keyword">if</span>(mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD) != <span class="keyword">null</span>)&#123;</div><div class="line">  <span class="comment">//Success!存在磁力计</span></div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">  <span class="comment">//Failure!不存在磁力计</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="监控传感器事件"><a href="#监控传感器事件" class="headerlink" title="监控传感器事件"></a>监控传感器事件</h2><p>要监控传感器事件，必须实现<code>SensorEventListener</code>接口的两个回调方法：<code>onAccuracyChanged()</code>和<code>onSensorChanged()</code>.</p>
+<h3 id="A-sensor’s-accuracy-changes"><a href="#A-sensor’s-accuracy-changes" class="headerlink" title="A sensor’s accuracy changes."></a>A sensor’s accuracy changes.</h3><p>传感器的精度变化会调用<code>onAccuracyChanged()</code>方法。精度有四个常量：<code>SENSOR_STATUS_ACCURACY_LOW</code>,<code>SENSOR_STATUS_ACCURACY_MEDIUM</code>,<code>SENSOR_STATUS_ACCURACY_HIGH</code>和<code>SENSOR_STATUS_UNRELIABLE</code>。</p>
+<h3 id="A-sensor-reports-a-new-value"><a href="#A-sensor-reports-a-new-value" class="headerlink" title="A sensor reports a new value."></a>A sensor reports a new value.</h3><p>传感器返回新的数据时候会调用<code>onSensorChanged()</code>方法，提供<code>SensorEvent</code>对象，该对象包含传感器的数据，包含数据精度，传感器，数据生成时间和传感器生成的数据。</p>
+<p>接下来将通过一个指南针的例子来介绍传感器事件监听的运行机制。通过对 API 的查询了解，<code>SENSOR_ORIENTATION</code>已经在 API level 8废弃了，想要通过<code>getDefaultSensor()</code>方法直接获取方向参数已经不可取。官方给出的替代方法是一个静态(static)方法<code>getOrientation(float[] R, float[] values)</code>.</p>
+<h3 id="getOrientation"><a href="#getOrientation" class="headerlink" title="getOrientation"></a>getOrientation</h3><p>基于旋转矩阵获取设备的方向。</p>
+<table>
+<thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R</td>
+<td>float：旋转矩阵，通过<code>getRotationMatrix(float[], float[], float[], float[])</code>方法获取</td>
+</tr>
+<tr>
+<td>values</td>
+<td>float：包含三个float的数组</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>返回参数</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>float[]</td>
+<td>返回的数组</td>
+</tr>
+</tbody>
+</table>
+<h3 id="getRotationMatrix"><a href="#getRotationMatrix" class="headerlink" title="getRotationMatrix"></a>getRotationMatrix</h3><p><code>getRotationMatrix(float[] R, float[] I, float[] gravity, float[] geomagnetic)</code><br>计算倾斜矩阵<strong>I</strong>和旋转矩阵<strong>R</strong>并将其通过矢量变换从设备的坐标系转换成真实世界正交坐标系：</p>
+<ul>
+<li>X 定义为Y·Z的向量积（在设备所在的位置和地面相切，并大致指向东方）。</li>
+<li>Y 在设备所在的位置与地面相切，并指向磁北极。</li>
+<li>Z 指向天空并垂直于地面。<br><img src="/images/android/sensor/axis_globe.png" alt="正交坐标系"><br>其中</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R</td>
+<td>float:9个float参数的数组，保存旋转矩阵R的数据。R可以为空</td>
+</tr>
+<tr>
+<td>I</td>
+<td>float:9个float参数的数组，保存倾斜矩阵I的数据。I可以为空</td>
+</tr>
+<tr>
+<td>gravity</td>
+<td>float:3个float参数的数组，包含基于设备坐标系的重力矢量。使用类型为<code>TYPE_ACCELEROMETER</code>的传感器返回的数据</td>
+</tr>
+<tr>
+<td>geomagnetic</td>
+<td>float:3个float参数的数组，包含基于设备坐标系的磁场矢量。使用类型为<code>TYPE_MAGNETIC_FIELD</code>的传感器返回的数据</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>返回参数</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boolean</td>
+<td><code>true</code>表示成功，<code>false</code>表示失败(当设备处于自由落体状态)。自由落体的界定，当设备承受的重力小于标称值的1/10时，视为自由落体。失败时，输出的矩阵值不会修改</td>
+</tr>
+</tbody>
+</table>
+<h3 id="构建一个指南针"><a href="#构建一个指南针" class="headerlink" title="构建一个指南针"></a>构建一个指南针</h3><p>在现实世界的正交坐标系中，磁北极是固定方向的。想要构造一个指南针应用，最直观的思考是获取到设备朝向和所处位置磁北极方向的夹角。这个时候，直观的思考就是正确的思考，如何获取这样一个夹角呢。通过上面介绍的 API 来看，<code>getRotationMatrix()</code>方法，能够获得设备的旋转矩阵和倾斜矩阵。旋转矩阵是一个3<em>3或者4</em>4的矩阵，通过<code>getOrientation()</code>方法就能直接获得设备关于正交系的三轴旋转数据。设备的指向必然是设备关于z轴的旋转角度。如何取值可以参考源码或者文档：</p>
+<blockquote>
+<ul>
+<li>values[0]: Azimuth, angle of rotation about the -z axis. This value represents the angle between the device’s y axis and the magnetic north pole. When facing north, this angle is 0, when facing south, this angle is π. Likewise, when facing east, this angle is π/2, and when facing west, this angle is -π/2. The range of values is -π to π.</li>
+<li>values[1]: Pitch, angle of rotation about the x axis. This value represents the angle between a plane parallel to the device’s screen and a plane parallel to the ground. Assuming that the bottom edge of the device faces the user and that the screen is face-up, tilting the top edge of the device toward the ground creates a positive pitch angle. The range of values is -π to π.</li>
+<li>values[2]: Roll, angle of rotation about the y axis. This value represents the angle between a plane perpendicular to the device’s screen and a plane perpendicular to the ground. Assuming that the bottom edge of the device faces the user and that the screen is face-up, tilting the left edge of the device toward the ground creates a positive roll angle. The range of values is -π/2 to π/2.</li>
+</ul>
+</blockquote>
+<p>可知，此时此刻的<code>values[0]</code>正是我们想要的值。回归到代码的世界，是这样的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SensorActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="keyword">implements</span> <span class="title">SensorEventListener</span></span>&#123;</div><div class="line">	<span class="comment">//sensor object</span></div><div class="line">	<span class="keyword">private</span> SensorManager mSensorManager;</div><div class="line">	<span class="keyword">private</span> Sensor mAccelerometer;</div><div class="line">	<span class="keyword">private</span> Sensor mMagneticField;</div><div class="line">	<span class="comment">//sensor data</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">float</span>[] r = <span class="keyword">new</span> <span class="keyword">float</span>[<span class="number">9</span>];	<span class="comment">//rotation matrix</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">float</span>[] values = <span class="keyword">new</span> <span class="keyword">float</span>[<span class="number">3</span>]	<span class="comment">//orientation values</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">float</span>[] accelerometerValues = <span class="keyword">new</span> <span class="keyword">float</span>[<span class="number">3</span>]	<span class="comment">//data of acclerometer sensor</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">float</span>[] magneticFieldValues = <span class="keyword">new</span> fooat[<span class="number">3</span>]	<span class="comment">//data of magnetic field sensor</span></div><div class="line"></div><div class="line">	<span class="meta">@Ovrride</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">		...</div><div class="line">		<span class="comment">//init sensor</span></div><div class="line">		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);</div><div class="line">        	mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);</div><div class="line">        	mMagneticField = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);</div><div class="line">		...</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	</div><div class="line">    	<span class="meta">@Override</span></div><div class="line">    	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;</div><div class="line">        	<span class="keyword">super</span>.onResume();</div><div class="line">		<span class="comment">//regist listener</span></div><div class="line">        	mSensorManager.registerListener(<span class="keyword">this</span>, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);</div><div class="line">        	mSensorManager.registerListener(<span class="keyword">this</span>, mMagneticField, SensorManager.SENSOR_DELAY_NORMAL);</div><div class="line">    		...</div><div class="line">    	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">    	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPause</span><span class="params">()</span> </span>&#123;</div><div class="line">        	<span class="keyword">super</span>.onPause();</div><div class="line">		<span class="comment">//unregist listener</span></div><div class="line">        	mSensorManager.unregisterListener(<span class="keyword">this</span>);</div><div class="line">    	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">    	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSensorChanged</span><span class="params">(SensorEvent sensorEvent)</span> </span>&#123;</div><div class="line">        	<span class="keyword">if</span> (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER) &#123;    </div><div class="line">        	    accelerometerValues = sensorEvent.values;</div><div class="line">        	&#125;</div><div class="line">        	<span class="keyword">if</span> (sensorEvent.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) &#123; </div><div class="line">        	    magneticFieldValues = sensorEvent.values;</div><div class="line">        	&#125;</div><div class="line">        	SensorManager.getRotationMatrix(r, <span class="keyword">null</span>, accelerometerValues, magneticFieldValues);</div><div class="line">        	SensorManager.getOrientation(r, values);</div><div class="line">        	values[<span class="number">0</span>] = (<span class="keyword">float</span>) Math.toDegrees(values[<span class="number">0</span>]);</div><div class="line">    	&#125;</div><div class="line"></div><div class="line">    	<span class="meta">@Override</span></div><div class="line">    	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAccuracyChanged</span><span class="params">(Sensor sensor, <span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line"></div><div class="line">    	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>整个过程是很流畅的，由于传感器本身是不受Activity的生命周期控制，并且系统并不会在关闭屏幕时关闭传感器，所以，请注意手动控制好传感器的开闭，以节省电量。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/compass/">compass</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sensor/">sensor</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/传感器/">传感器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/指南针/">指南针</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-calendar"></i>
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+      
+
+      
+        <div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode"></div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/12/30/关于“小刚的架构思考：什么是架构”的思考/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          关于“小刚的架构思考：什么是架构”的思考
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/09/git-study-notebook-two/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">git学习笔记（二）—— git的简单操作</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="android-sensor-compass" data-title="Android 传感器学习（一）——指南针的实现" data-url="http://arobot.github.io/2016/12/23/android-sensor-compass/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"arobot"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 罗威
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/Retrofit/" style="font-size: 10px;">Retrofit</a> <a href="/tags/blog/" style="font-size: 15px;">blog</a> <a href="/tags/compass/" style="font-size: 10px;">compass</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/sensor/" style="font-size: 10px;">sensor</a> <a href="/tags/tools/" style="font-size: 20px;">tools</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/个人/" style="font-size: 10px;">个人</a> <a href="/tags/传感器/" style="font-size: 10px;">传感器</a> <a href="/tags/博客/" style="font-size: 15px;">博客</a> <a href="/tags/指南针/" style="font-size: 10px;">指南针</a> <a href="/tags/杂文/" style="font-size: 15px;">杂文</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">拼尽了全力&lt;br&gt;才明白什么叫无能为力&lt;br&gt;&lt;br&gt;&lt;br&gt;被击倒在地&lt;br&gt;躺下的滋味是那样的舒爽&lt;br&gt;&lt;br&gt;&lt;br&gt;说到底&lt;br&gt;我仍在路上</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

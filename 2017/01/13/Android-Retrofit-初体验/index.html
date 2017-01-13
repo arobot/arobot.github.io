@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://arobot.github.io">
+  <title>Android Retrofit 初体验 | 罗威的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Retrofit 是Square旗下的一款为Android和Java打造的类型安全开源HTTP请求构造工具。Retrofit的请求构造，响应以及数据的序列化等都相当的简洁。在进行了简单的尝试之后，将自己的使用心得做一个记录。
+环境平台：Android Studio2.2.3Retrofit版本：2.1测试接口：http://ip.taobao.com/
+使用前配置在 Android Studio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Retrofit 初体验">
+<meta property="og:url" content="http://arobot.github.io/2017/01/13/Android-Retrofit-初体验/index.html">
+<meta property="og:site_name" content="罗威的博客">
+<meta property="og:description" content="Retrofit 是Square旗下的一款为Android和Java打造的类型安全开源HTTP请求构造工具。Retrofit的请求构造，响应以及数据的序列化等都相当的简洁。在进行了简单的尝试之后，将自己的使用心得做一个记录。
+环境平台：Android Studio2.2.3Retrofit版本：2.1测试接口：http://ip.taobao.com/
+使用前配置在 Android Studio">
+<meta property="og:updated_time" content="2017-01-13T03:55:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Retrofit 初体验">
+<meta name="twitter:description" content="Retrofit 是Square旗下的一款为Android和Java打造的类型安全开源HTTP请求构造工具。Retrofit的请求构造，响应以及数据的序列化等都相当的简洁。在进行了简单的尝试之后，将自己的使用心得做一个记录。
+环境平台：Android Studio2.2.3Retrofit版本：2.1测试接口：http://ip.taobao.com/
+使用前配置在 Android Studio">
+  
+    <link rel="alternative" href="/atom.xml" title="罗威的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/extras/lolipop.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/images/extras/avatar.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">罗威</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">间歇性神经失常</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="http://github.com/arobot" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="http://zhihu.com/people/arobot" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">罗威</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/images/extras/avatar.png" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">罗威</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">间歇性神经失常</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="http://github.com/arobot" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="http://zhihu.com/people/arobot" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Android-Retrofit-初体验" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android Retrofit 初体验
+    </h1>
+  
+
+        <a href="/2017/01/13/Android-Retrofit-初体验/" class="archive-article-date">
+  	<time datetime="2017-01-13T02:04:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-13</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>Retrofit</code> 是<a href="http://square.github.io/" target="_blank" rel="external">Square</a>旗下的一款为Android和Java打造的类型安全开源HTTP请求构造工具。<a href="https://github.com/square/retrofit" target="_blank" rel="external">Retrofit</a>的请求构造，响应以及数据的序列化等都相当的简洁。在进行了简单的尝试之后，将自己的使用心得做一个记录。</p>
+<h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><p>平台：Android Studio2.2.3<br>Retrofit版本：2.1<br>测试接口：<a href="http://ip.taobao.com/" target="_blank" rel="external">http://ip.taobao.com/</a></p>
+<h3 id="使用前配置"><a href="#使用前配置" class="headerlink" title="使用前配置"></a>使用前配置</h3><p>在 Android Studio 平台下，可以通过构建工具 <code>Gradle</code> 很简单的将 <code>Retrofit</code>引入到工程中来，在 <code>app:build.gradle</code> 中引入以下依赖<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'com.squareup.retrofit2:retrofit:2.1.0'</span></div><div class="line">compile <span class="string">'com.google.code.gson:gson:2.4'</span></div><div class="line">compile <span class="string">'com.squareup.retrofit2:converter-gson:2.1.0'</span></div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>在工程中，我引入 Google 的<code>Gson</code> 作为整个工程的序列化工具，<code>Retrofit</code> 本身只能反序列化 <code>OkHttp</code> 的 <code>ResponseBody</code>,或者使用注解<code>@Body</code>接受它的 <code>RequestBody</code> 请求构造体。如果想要引入Gson进行序列化和反序列化的操作，则需要在工程中引入<code>converter-gson</code>工具。同时，官网还提供了其他几种转化工具：</p>
+<ul>
+<li><code>Gson</code>: com.squareup.retrofit2:converter-gson</li>
+<li><code>Jackson</code>: com.squareup.retrofit2:converter-jackson</li>
+<li><code>Moshi</code>: com.squareup.retrofit2:converter-moshi</li>
+<li><code>Protobuf</code>: com.squareup.retrofit2:converter-protobuf</li>
+<li><code>Wire</code>: com.squareup.retrofit2:converter-wire</li>
+<li><code>Simple XML</code>: com.squareup.retrofit2:converter-simplexml</li>
+<li><code>Scalars (primitives, boxed, and String)</code>: com.squareup.retrofit2:converter-scalars</li>
+</ul>
+<p>同步完成之后就能够进行开发了</p>
+<h3 id="Retrofit的使用"><a href="#Retrofit的使用" class="headerlink" title="Retrofit的使用"></a>Retrofit的使用</h3><p>想要完成一次网络请求，构造请求，发起请求，接受回调是最基本的三个步骤。我们接下来就从这三个方面切入Retrofit的世界</p>
+<h4 id="构造请求"><a href="#构造请求" class="headerlink" title="构造请求"></a>构造请求</h4><p><code>Retrofit</code>是基于注解构造的。我想要发起对一个ip地址的查询请求，首先要构造这个请求，通过对接口文档的查询，请求是以<code>Get</code>的方式传入一个ip地址就够了。整个请求的构造非常简单<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ApiService</span> </span>&#123;</div><div class="line">    <span class="meta">@GET</span>(<span class="string">"service/getIpInfo.php"</span>)</div><div class="line">    Call&lt;ResponseBody&lt;IpInfo&gt;&gt; getIpInfo(<span class="meta">@Query</span>(<span class="string">"ip"</span>) String ip);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在接口上注解上请求的方式(GET)和路径(service/getIpInfo.php),要查询(@Query)的参数key(ip)和值(ip).</p>
+<h5 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h5><p>可以看出，请求的响应数据结构是<code>ResponseBody&lt;IpInfo&gt;</code>，响应的数据可以直接被反序列化成一个pojo供我们直接调用。<br><strong>ResponseBody</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResponseBody</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> code;</div><div class="line">    <span class="keyword">private</span> T data;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCode</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> code;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCode</span><span class="params">(<span class="keyword">int</span> code)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.code = code;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getData</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> data;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setData</span><span class="params">(T data)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.data = data;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Gson().toJson(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>IpInfo</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IpInfo</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * country : 中国</div><div class="line">     * country_id : CN</div><div class="line">     * area : 西南</div><div class="line">     * area_id : 500000</div><div class="line">     * region : 四川省</div><div class="line">     * region_id : 510000</div><div class="line">     * city : 成都市</div><div class="line">     * city_id : 510100</div><div class="line">     * county :</div><div class="line">     * county_id : -1</div><div class="line">     * isp : 电信</div><div class="line">     * isp_id : 100017</div><div class="line">     * ip : 171.221.144.107</div><div class="line">     */</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String country;</div><div class="line">    <span class="keyword">private</span> String country_id;</div><div class="line">    <span class="keyword">private</span> String area;</div><div class="line">    <span class="keyword">private</span> String area_id;</div><div class="line">    <span class="keyword">private</span> String region;</div><div class="line">    <span class="keyword">private</span> String region_id;</div><div class="line">    <span class="keyword">private</span> String city;</div><div class="line">    <span class="keyword">private</span> String city_id;</div><div class="line">    <span class="keyword">private</span> String county;</div><div class="line">    <span class="keyword">private</span> String county_id;</div><div class="line">    <span class="keyword">private</span> String isp;</div><div class="line">    <span class="keyword">private</span> String isp_id;</div><div class="line">    <span class="keyword">private</span> String ip;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> country;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCountry</span><span class="params">(String country)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.country = country;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry_id</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> country_id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCountry_id</span><span class="params">(String country_id)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.country_id = country_id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getArea</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> area;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setArea</span><span class="params">(String area)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.area = area;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getArea_id</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> area_id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setArea_id</span><span class="params">(String area_id)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.area_id = area_id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getRegion</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> region;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRegion</span><span class="params">(String region)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.region = region;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getRegion_id</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> region_id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRegion_id</span><span class="params">(String region_id)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.region_id = region_id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCity</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> city;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCity</span><span class="params">(String city)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.city = city;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCity_id</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> city_id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCity_id</span><span class="params">(String city_id)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.city_id = city_id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCounty</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> county;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCounty</span><span class="params">(String county)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.county = county;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCounty_id</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> county_id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCounty_id</span><span class="params">(String county_id)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.county_id = county_id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getIsp</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> isp;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setIsp</span><span class="params">(String isp)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.isp = isp;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getIsp_id</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> isp_id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setIsp_id</span><span class="params">(String isp_id)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.isp_id = isp_id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getIp</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> ip;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setIp</span><span class="params">(String ip)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.ip = ip;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Gson().toJson(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="发起请求并获取回调"><a href="#发起请求并获取回调" class="headerlink" title="发起请求并获取回调"></a>发起请求并获取回调</h4><p>发起请求需要先构造<code>Retrofit</code>对象，并在该对象保存一些基本的信息，比如<strong>BaseUrl</strong>和<strong>ConvertFactory</strong>等信息。然后通过<code>Retrofit</code>对象实例化我们的接口对象<code>ApiService</code>.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder()</div><div class="line">                .baseUrl(<span class="string">"http://ip.taobao.com/"</span>)</div><div class="line">                .addConverterFactory(GsonConverterFactory.create())</div><div class="line">                .build();</div><div class="line">ApiService apiService = retrofit.create(ApiService.class);</div><div class="line"></div><div class="line">Call&lt;ResponseBody&lt;IpInfo&gt;&gt; call = apiService.getIpInfo(<span class="string">"171.221.144.107"</span>);</div><div class="line">call.enqueue(<span class="keyword">new</span> Callback&lt;ResponseBody&lt;IpInfo&gt;&gt;() &#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(Call&lt;ResponseBody&lt;IpInfo&gt;&gt; call, Response&lt;ResponseBody&lt;IpInfo&gt;&gt; response)</span> </span>&#123;</div><div class="line">	ResponseBody&lt;IpInfo&gt; ipInfoResponseBody = response.body();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Call&lt;ResponseBody&lt;IpInfo&gt;&gt; call, Throwable t)</span> </span>&#123;</div><div class="line">	progressBar.setVisibility(View.GONE);</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>整个流程如上面所示，很简单的发起一次网络请求，并成功接受到响应数据。整个网络执行层的代码仅仅十多行。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Retrofit/">Retrofit</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-calendar"></i>
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+      
+
+      
+        <div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode"></div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/12/30/关于“小刚的架构思考：什么是架构”的思考/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">关于“小刚的架构思考：什么是架构”的思考</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Android-Retrofit-初体验" data-title="Android Retrofit 初体验" data-url="http://arobot.github.io/2017/01/13/Android-Retrofit-初体验/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"arobot"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 罗威
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/Retrofit/" style="font-size: 10px;">Retrofit</a> <a href="/tags/blog/" style="font-size: 15px;">blog</a> <a href="/tags/compass/" style="font-size: 10px;">compass</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/sensor/" style="font-size: 10px;">sensor</a> <a href="/tags/tools/" style="font-size: 20px;">tools</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/个人/" style="font-size: 10px;">个人</a> <a href="/tags/传感器/" style="font-size: 10px;">传感器</a> <a href="/tags/博客/" style="font-size: 15px;">博客</a> <a href="/tags/指南针/" style="font-size: 10px;">指南针</a> <a href="/tags/杂文/" style="font-size: 15px;">杂文</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">拼尽了全力&lt;br&gt;才明白什么叫无能为力&lt;br&gt;&lt;br&gt;&lt;br&gt;被击倒在地&lt;br&gt;躺下的滋味是那样的舒爽&lt;br&gt;&lt;br&gt;&lt;br&gt;说到底&lt;br&gt;我仍在路上</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

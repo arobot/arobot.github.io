@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://arobot.github.io">
+  <title>git学习笔记（二）—— git的简单操作 | 罗威的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这是本系列学习笔记的第二篇git 学习笔记（一）—— 初识 git
+前言本篇文章将简要的介绍 Git 的一般操作，满足使用 Git 作为你的版本控制系统的入门级需求。本文将按工程的一般操作顺序进行讲述。
+获取 Git 仓库对于一个工程，一般来说，我们都是从0开始就要进行版本控制。需要我们在新建这个工程之初就要添加 git 支持。也有少部分在工程进行中添加 git 支持的需求。但是，不论你是从何种情">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git学习笔记（二）—— git的简单操作">
+<meta property="og:url" content="http://arobot.github.io/2016/12/09/git-study-notebook-two/index.html">
+<meta property="og:site_name" content="罗威的博客">
+<meta property="og:description" content="这是本系列学习笔记的第二篇git 学习笔记（一）—— 初识 git
+前言本篇文章将简要的介绍 Git 的一般操作，满足使用 Git 作为你的版本控制系统的入门级需求。本文将按工程的一般操作顺序进行讲述。
+获取 Git 仓库对于一个工程，一般来说，我们都是从0开始就要进行版本控制。需要我们在新建这个工程之初就要添加 git 支持。也有少部分在工程进行中添加 git 支持的需求。但是，不论你是从何种情">
+<meta property="og:image" content="http://arobot.github.io/images/git/lifecycle.png">
+<meta property="og:updated_time" content="2017-01-10T08:51:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git学习笔记（二）—— git的简单操作">
+<meta name="twitter:description" content="这是本系列学习笔记的第二篇git 学习笔记（一）—— 初识 git
+前言本篇文章将简要的介绍 Git 的一般操作，满足使用 Git 作为你的版本控制系统的入门级需求。本文将按工程的一般操作顺序进行讲述。
+获取 Git 仓库对于一个工程，一般来说，我们都是从0开始就要进行版本控制。需要我们在新建这个工程之初就要添加 git 支持。也有少部分在工程进行中添加 git 支持的需求。但是，不论你是从何种情">
+<meta name="twitter:image" content="http://arobot.github.io/images/git/lifecycle.png">
+  
+    <link rel="alternative" href="/atom.xml" title="罗威的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/extras/lolipop.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/images/extras/avatar.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">罗威</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">间歇性神经失常</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="http://github.com/arobot" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="http://zhihu.com/people/arobot" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">罗威</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/images/extras/avatar.png" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">罗威</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">间歇性神经失常</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="http://github.com/arobot" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="http://zhihu.com/people/arobot" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-git-study-notebook-two" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      git学习笔记（二）—— git的简单操作
+    </h1>
+  
+
+        <a href="/2016/12/09/git-study-notebook-two/" class="archive-article-date">
+  	<time datetime="2016-12-09T06:00:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-09</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是本系列学习笔记的第二篇<br><a href="http://wluo.me/2016/12/08/git-study-notebook-one/" target="_blank" rel="external">git 学习笔记（一）—— 初识 git</a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本篇文章将简要的介绍 Git 的一般操作，满足使用 Git 作为你的版本控制系统的入门级需求。本文将按工程的一般操作顺序进行讲述。</p>
+<h2 id="获取-Git-仓库"><a href="#获取-Git-仓库" class="headerlink" title="获取 Git 仓库"></a>获取 Git 仓库</h2><p>对于一个工程，一般来说，我们都是从0开始就要进行版本控制。需要我们在新建这个工程之初就要添加 git 支持。也有少部分在工程进行中添加 git 支持的需求。但是，不论你是从何种情景下添加版本控制，都不影响接下来将要进行的操作。<br>又或者，我们中途加入别人的工程，则需要克隆（clone）别人的仓库。</p>
+<a id="more"></a>
+<h3 id="现有目录初始化仓库"><a href="#现有目录初始化仓库" class="headerlink" title="现有目录初始化仓库"></a>现有目录初始化仓库</h3><p>对于第一种情况，只需要在当前目录下使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git init</div></pre></td></tr></table></figure></p>
+<p>该命令会在当前文件夹下生成<code>.git</code>隐藏子目录，该目录包含你初始化的 Git 仓库中所有的必须文件，这些文件是 Git 的骨干。这时候，仅仅做了一些初始化的操作，项目下所有的文件都还没有被跟踪。</p>
+<h3 id="克隆现有的仓库"><a href="#克隆现有的仓库" class="headerlink" title="克隆现有的仓库"></a>克隆现有的仓库</h3><p>在第二种情况下，直接获得已经存在的 Git 仓库的拷贝，需要使用 <code>clone</code> 命令。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git clone https://github.com/libgit2/libgit2</div></pre></td></tr></table></figure></p>
+<p>这个命令会在当前目录下创建一个名为“libgit2”的目录，并在这个目录下初始化<code>.git</code>文件夹，从远程仓库拉取所有的数据放入<code>.git</code>文件夹下。当前目录下也将拷贝所有当前分支的文件供开发和使用。当然，在克隆远程仓库的时候，可以自定义本地仓库的名字：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git clone https://github.com/libgit2/libgit2 mylibgit</div></pre></td></tr></table></figure></p>
+<p>这将执行与上一条命令相同的操作，在本地创建的仓库名称则会变成<code>mylibgit</code></p>
+<h2 id="追踪你的文件"><a href="#追踪你的文件" class="headerlink" title="追踪你的文件"></a>追踪你的文件</h2><p>现在我们有了一个真实存在的 Git 仓库，可以对仓库下的所有文件进行修改，完成阶段性目标之后，提交这些更新到仓库中。</p>
+<p>在工作目录下的每一个文件不外乎两种状态：</p>
+<pre><code>* 已跟踪    已经纳入版本控制的文件。
+* 未跟踪    除了已跟踪的文件，都属于未跟踪文件。
+</code></pre><p>所有已跟踪的文件可能处于未修改，已修改和放入暂存区三种状态。所有使用 Git 时文件的生命周期如下：</p>
+<p><img src="/images/git/lifecycle.png" alt="图1. 文件的状态变化周期"></p>
+<h3 id="检查当前文件状态"><a href="#检查当前文件状态" class="headerlink" title="检查当前文件状态"></a>检查当前文件状态</h3><p>使用<code>git status</code>命令可以查看当前目录下各个文件分别处在什么状态，一般来说，文件会处在四个不同的状态：</p>
+<h4 id="状态一-clean"><a href="#状态一-clean" class="headerlink" title="状态一 clean"></a>状态一 clean</h4><p>当你克隆一个工程下来，整个文件系统会处在这个状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git status</div><div class="line">On branch master</div><div class="line">nothing to commit, working tree clean</div></pre></td></tr></table></figure></p>
+<h4 id="状态二-untracked"><a href="#状态二-untracked" class="headerlink" title="状态二 untracked"></a>状态二 untracked</h4><p>在工程中新建一个“README.md”文件，并编辑其中的内容，这时候再查看状态：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ echo &apos;title&apos; &gt; README.md</div><div class="line">$ git status</div><div class="line">On branch master</div><div class="line">Untracked files:</div><div class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</div><div class="line">	</div><div class="line">        README.md</div><div class="line">	</div><div class="line">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</div></pre></td></tr></table></figure></p>
+<h4 id="状态三-staged"><a href="#状态三-staged" class="headerlink" title="状态三 staged"></a>状态三 staged</h4><p>新建一个文件之后，文件并不会立即被 Git 追踪，因为很多文件我们并不希望其被版本控制。因此，整个过程希望我们能够有所选择，使用<code>git add &lt;file&gt;</code>命令添加你希望的文件进入版本控制中，处于<code>staged</code>状态的版本信息，在每个阶段的修改中，只存在一个版本。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ git add README.md</div><div class="line">$ git status</div><div class="line">On branch master</div><div class="line">Changes to be committed:</div><div class="line">  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)</div><div class="line">  	</div><div class="line">	new file:   README.md</div></pre></td></tr></table></figure></p>
+<p>注意到，Git 提示可以使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git rm --cached &lt;file&gt;</div></pre></td></tr></table></figure></p>
+<p>将已经处于<code>staged</code>状态的文件回退到<code>untracked</code>状态。</p>
+<h4 id="状态四-committed"><a href="#状态四-committed" class="headerlink" title="状态四 committed"></a>状态四 committed</h4><p>使用<code>commit</code>命令，将已经暂存起来的更改提交到仓库中，所有的历史版本追溯都是以你<code>commit</code>为基准进行回溯的。区别于<code>staged</code>状态下的文件，这样的版本信息是永久的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ git commit -m &apos;first commit&apos;</div><div class="line">[master (root-commit) 33e08ff] first commit</div><div class="line"> 1 file changed, 1 insertion(+)</div><div class="line"> create mode 100644 README.md</div><div class="line">	</div><div class="line">$ git status</div><div class="line">On branch master</div><div class="line">nothing to commit, working tree clean</div></pre></td></tr></table></figure></p>
+<p>我知道，细心的你已经发现，这个状态和‘状态一’根本就没有区别嘛。之所以分别列出来，是想重点的强调一点，基于版本控制的整个文件系统，每次<code>commit</code>都是一个独立的版本。在 Git 的历史版本中都是独立并且一视同仁的。</p>
+<h4 id="状态五-not-staged"><a href="#状态五-not-staged" class="headerlink" title="状态五 not staged"></a>状态五 not staged</h4><p>再次修改“README.md”文件，查看状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ git status</div><div class="line">On branch master</div><div class="line">Changes not staged for commit:</div><div class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</div><div class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</div><div class="line">  	</div><div class="line">	modified:   README.md</div><div class="line">	</div><div class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</div></pre></td></tr></table></figure></p>
+<p><code>not staged</code>状态下，处于<code>staged</code>状态的对立面，表示进行了修改等操作，但是所有的操作没有被 Git 暂存起来，这个时候可以使用<code>add</code>命令将修改暂存，也可以跳过这一步，直接使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git commit -a -m &apos;message&apos;</div></pre></td></tr></table></figure></p>
+<p>将所有的修改跳过暂存状态，提交到 Git 仓库。</p>
+<h3 id="提交修改到仓库"><a href="#提交修改到仓库" class="headerlink" title="提交修改到仓库"></a>提交修改到仓库</h3><p>在做协同开发的时候，一般来说会有一个远程仓库做大家的同步和备份仓库使用。在做好自己的工作之后，提交到本地仓库之后是不够的。需要将本地的修改同步到远程仓库，大家合并各自的部分，才能拼凑成一个完整的工程。</p>
+<h4 id="合并远程仓库"><a href="#合并远程仓库" class="headerlink" title="合并远程仓库"></a>合并远程仓库</h4><p>直接提交本地修改到远程仓库，很大可能会由于远程仓库超越本地分支进度而被拒绝提交。需要先合并远程的修改之后，解决冲突才能成功提交。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git pull</div></pre></td></tr></table></figure></p>
+<p><code>pull</code>将远程仓库的所有更新文件获取下来，解决冲突。再将文件<code>add</code>进来，<code>commit</code>之后提交。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push origin master</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tools/">tools</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-calendar"></i>
+	<a class="article-category-link" href="/categories/Tools/">Tools</a>
+	</div>
+
+
+      
+
+      
+        <div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode"></div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/12/23/android-sensor-compass/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Android 传感器学习（一）——指南针的实现
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/08/git-study-notebook-one/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">git学习笔记（一）——初识git</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="git-study-notebook-two" data-title="git学习笔记（二）—— git的简单操作" data-url="http://arobot.github.io/2016/12/09/git-study-notebook-two/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"arobot"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 罗威
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/Retrofit/" style="font-size: 10px;">Retrofit</a> <a href="/tags/blog/" style="font-size: 15px;">blog</a> <a href="/tags/compass/" style="font-size: 10px;">compass</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/sensor/" style="font-size: 10px;">sensor</a> <a href="/tags/tools/" style="font-size: 20px;">tools</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/个人/" style="font-size: 10px;">个人</a> <a href="/tags/传感器/" style="font-size: 10px;">传感器</a> <a href="/tags/博客/" style="font-size: 15px;">博客</a> <a href="/tags/指南针/" style="font-size: 10px;">指南针</a> <a href="/tags/杂文/" style="font-size: 15px;">杂文</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">拼尽了全力&lt;br&gt;才明白什么叫无能为力&lt;br&gt;&lt;br&gt;&lt;br&gt;被击倒在地&lt;br&gt;躺下的滋味是那样的舒爽&lt;br&gt;&lt;br&gt;&lt;br&gt;说到底&lt;br&gt;我仍在路上</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

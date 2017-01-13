@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://arobot.github.io">
+  <title>引入Hexo，美化你的博客（二）配置Hexo | 罗威的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="继上一篇文章之后，你的博客应该都已经能够正常的在本机运行了。但是这远远不能满足我们搭建博客的需求。不过老生常谈，大部分的配置都能够在官方找到，传送门Hexo配置。不同的主题还有个性化的配置，详细的配置请参见你使用的主题的文档。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="引入Hexo，美化你的博客（二）配置Hexo">
+<meta property="og:url" content="http://arobot.github.io/2016/12/06/set-up-your-hexo/index.html">
+<meta property="og:site_name" content="罗威的博客">
+<meta property="og:description" content="继上一篇文章之后，你的博客应该都已经能够正常的在本机运行了。但是这远远不能满足我们搭建博客的需求。不过老生常谈，大部分的配置都能够在官方找到，传送门Hexo配置。不同的主题还有个性化的配置，详细的配置请参见你使用的主题的文档。">
+<meta property="og:image" content="http://arobot.github.io/images/hexo_2/dns_jiexi.jpg">
+<meta property="og:image" content="http://arobot.github.io/images/hexo_2/dns_result.jpg">
+<meta property="og:updated_time" content="2017-01-10T08:51:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="引入Hexo，美化你的博客（二）配置Hexo">
+<meta name="twitter:description" content="继上一篇文章之后，你的博客应该都已经能够正常的在本机运行了。但是这远远不能满足我们搭建博客的需求。不过老生常谈，大部分的配置都能够在官方找到，传送门Hexo配置。不同的主题还有个性化的配置，详细的配置请参见你使用的主题的文档。">
+<meta name="twitter:image" content="http://arobot.github.io/images/hexo_2/dns_jiexi.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="罗威的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/extras/lolipop.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/images/extras/avatar.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">罗威</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">间歇性神经失常</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="http://github.com/arobot" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="http://zhihu.com/people/arobot" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">罗威</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/images/extras/avatar.png" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">罗威</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">间歇性神经失常</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="http://github.com/arobot" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="http://zhihu.com/people/arobot" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-set-up-your-hexo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      引入Hexo，美化你的博客（二）配置Hexo
+    </h1>
+  
+
+        <a href="/2016/12/06/set-up-your-hexo/" class="archive-article-date">
+  	<time datetime="2016-12-06T02:20:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-06</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>继上一篇文章之后，你的博客应该都已经能够正常的在本机运行了。但是这远远不能满足我们搭建博客的需求。不过老生常谈，大部分的配置都能够在官方找到，传送门<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">Hexo配置</a>。不同的主题还有个性化的配置，详细的配置请参见你使用的主题的文档。</p>
+<a id="more"></a>
+<h2 id="Hexo的目录结构"><a href="#Hexo的目录结构" class="headerlink" title="Hexo的目录结构"></a>Hexo的目录结构</h2><p>使用<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo init</div></pre></td></tr></table></figure></p>
+<p>命令之后，会初始化完成一个完整的博客文件夹，其中包含以下几个文件或文件夹：</p>
+<blockquote>
+<p>_config.yml    <em>Hexo的配置文件，大部分的参数在这里配置</em><br>package.json    <em>应用程序的信息，小白不用动这个文件，官方提示可以自由移除</em><br>scaffolds    <em>模板文件夹。新建文章时，采用的模板存放于此</em><br>source        <em>用户存放资源的地方，所有用户生成文件或资源都用这里保存</em></p>
+<blockquote>
+<p>_drafts    <em>草稿文件夹，用户可以直接生成草稿到这个文件夹</em><br>_posts    <em>可发布的文章文件夹，下面的文章会在<code>hexo d</code>时，发布出去</em></p>
+</blockquote>
+<p>themes        <em>主题文件夹，Hexo会根据主题设置生成静态页面</em></p>
+</blockquote>
+<h3 id="config-yml配置"><a href="#config-yml配置" class="headerlink" title="_config.yml配置"></a>_config.yml配置</h3><blockquote>
+<p>这一节的内容全部copy自<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">官方文档</a></p>
+</blockquote>
+<h4 id="网站"><a href="#网站" class="headerlink" title="网站"></a>网站</h4><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title</td>
+<td>网站标题</td>
+</tr>
+<tr>
+<td>subtitle</td>
+<td>网站副标题</td>
+</tr>
+<tr>
+<td>description</td>
+<td>网站描述</td>
+</tr>
+<tr>
+<td>author</td>
+<td>您的名字</td>
+</tr>
+<tr>
+<td>language</td>
+<td>网站使用的语言</td>
+</tr>
+<tr>
+<td>timezone</td>
+<td>网站时区。Hexo默认使用您电脑的时区。<a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" target="_blank" rel="external">时区列表</a>。比如说：America/New_York,Japan,和UTC。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h4><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td>网址</td>
+<td></td>
+</tr>
+<tr>
+<td>root</td>
+<td>网站根目录</td>
+<td></td>
+</tr>
+<tr>
+<td>permalink</td>
+<td>文章的<a href="https://hexo.io/zh-cn/docs/permalinks.html" target="_blank" rel="external">永久链接</a>格式</td>
+<td>:year/:month/:day/:title/</td>
+</tr>
+<tr>
+<td>permalink_default</td>
+<td>永久链接中各部分的默认值</td>
+<td>　</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h3 id="网站存放在子目录"><a href="#网站存放在子目录" class="headerlink" title="网站存放在子目录"></a>网站存放在子目录</h3><p>如果您的网站存放在子目录中，例如<code>http://yoursite.com/blog</code>，则请将您的<code>url</code>设为<code>http://yoursite.com/blog</code>并把<code>root</code>设为<code>/blog/</code>。</p>
+</blockquote>
+<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>source_dir</td>
+<td>资源文件夹，这个文件夹用来存放内容。</td>
+<td>source</td>
+</tr>
+<tr>
+<td>public_dir</td>
+<td>公共文件夹，这个文件夹用于存放生成的站点文件</td>
+<td>public</td>
+</tr>
+<tr>
+<td>tag_dir</td>
+<td>标签文件夹</td>
+<td>tags</td>
+</tr>
+<tr>
+<td>archive_dir</td>
+<td>归档文件夹</td>
+<td>archives</td>
+</tr>
+<tr>
+<td>category_dir</td>
+<td>分类文件夹</td>
+<td>categories</td>
+</tr>
+<tr>
+<td>code_dir</td>
+<td>Include code文件夹</td>
+<td>downloads/code</td>
+</tr>
+<tr>
+<td>i18n_dir</td>
+<td>国际化(i18n)文件夹</td>
+<td>:lang</td>
+</tr>
+<tr>
+<td>skip_render</td>
+<td>跳过指定文件的渲染，您可使用<a href="https://github.com/isaacs/node-glo://github.com/isaacs/node-glob" target="_blank" rel="external">glob 表达式</a>来匹配路径。</td>
+<td>　</td>
+</tr>
+</tbody>
+</table>
+<h4 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h4><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new_post_name</td>
+<td>新文章的文件名称</td>
+<td>:title.md</td>
+</tr>
+<tr>
+<td>default</td>
+<td>预设布局</td>
+<td>post</td>
+</tr>
+<tr>
+<td>auto_spacing</td>
+<td>在中文和英文之间加入空格</td>
+<td>false</td>
+</tr>
+<tr>
+<td>titlecase</td>
+<td>把标题转换为title case</td>
+<td>false</td>
+</tr>
+<tr>
+<td>external_link</td>
+<td>在新标签中打开链接</td>
+<td>true</td>
+</tr>
+<tr>
+<td>filename_case</td>
+<td>把新文件名称转换为（1）小写或（2）大写</td>
+<td>0</td>
+</tr>
+<tr>
+<td>render_drafts</td>
+<td>显示草稿</td>
+<td>false</td>
+</tr>
+<tr>
+<td>post_asset_folder</td>
+<td>启动<a href="https://hexo.io/zh-cn/docs/asset-folders.html" target="_blank" rel="external">Asset文件夹</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td>relative_link</td>
+<td>吧链接改为与根目录的相对地址</td>
+<td>false</td>
+</tr>
+<tr>
+<td>future</td>
+<td>显示未来的文章</td>
+<td>true</td>
+</tr>
+<tr>
+<td>highlight</td>
+<td>代码块的设置</td>
+<td>　</td>
+</tr>
+</tbody>
+</table>
+<h4 id="分类-amp-标签"><a href="#分类-amp-标签" class="headerlink" title="分类&amp;标签"></a>分类&amp;标签</h4><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>default_category</td>
+<td>默认分类</td>
+<td>uncategorized</td>
+</tr>
+<tr>
+<td>category_map</td>
+<td>分类别名</td>
+<td></td>
+</tr>
+<tr>
+<td>tag_map</td>
+<td>标签别名</td>
+<td>　</td>
+</tr>
+</tbody>
+</table>
+<h4 id="日期-时间格式"><a href="#日期-时间格式" class="headerlink" title="日期/时间格式"></a>日期/时间格式</h4><p>Hexo使用<a href="http://momentjs.com/" target="_blank" rel="external">Moment.js</a>来解析和显示时间。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>date_format</td>
+<td>日期格式</td>
+<td>YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>time_format</td>
+<td>时间格式</td>
+<td>H:mm:ss</td>
+</tr>
+</tbody>
+</table>
+<h4 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h4><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>per_page</td>
+<td>每页显示的文章量（0=关闭分页功能）</td>
+<td>10</td>
+</tr>
+<tr>
+<td>pagination_dir</td>
+<td>分页目录</td>
+<td>page</td>
+</tr>
+</tbody>
+</table>
+<h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>theme</td>
+<td>当前主题名称。值为false时禁用主题</td>
+</tr>
+<tr>
+<td>deploy</td>
+<td>部署部分的设置</td>
+</tr>
+</tbody>
+</table>
+<h3 id="主题设置"><a href="#主题设置" class="headerlink" title="主题设置"></a>主题设置</h3><p>我的主题使用的<a href="https://github.com/litten" target="_blank" rel="external">@Litten</a>制作的主题<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">Yilia</a>。<br>关于主题的设置，可以参考该主题的配置。</p>
+<p>关于主题的设置，有些坑在这里说明一下。</p>
+<h4 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h4><p>Hexo对于路径的生成策略都是相对路径，也就是说，只要你不指定为绝对路径，设置的链接都将是<code>root</code>+<code>url</code>的形式。<br>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">github: &quot;github.com/arobot&quot;</div></pre></td></tr></table></figure></p>
+<p>点击图标会链接到<code>http://yoursite/github.com/arobot</code>，显然这样是错误的。正确的设置方式是绝对路径：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">github: &quot;https://github.com/arobot&quot;</div></pre></td></tr></table></figure></p>
+<p>同理，其他项的设置也是如此，注意区分你使用的链接是否需要指定绝对路径。</p>
+<h3 id="个人域名"><a href="#个人域名" class="headerlink" title="个人域名"></a>个人域名</h3><h4 id="获取ip"><a href="#获取ip" class="headerlink" title="获取ip"></a>获取ip</h4><p>如果你手上恰好有一个为自己购买的域名，那正适合你刚刚搭建好的博客。<br>我的域名是在<a href="https://aliyun.com" target="_blank" rel="external">aliyun.com</a>上购买的，在我搭建这个博客时候就想，我应该有一个自己的域名，换了很多组合选了一个还算满意的。当你看到这里的时候，如果也有冲动，那赶紧去看看吧，说不定过两天就没有了呢</p>
+<p>首先，需要知道你的博客所在的服务器地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ping arobot.github.io</div></pre></td></tr></table></figure></p>
+<p>得到我的博客在<code>151.101.100.133</code>上面，记下这个ip，会在后面用到。</p>
+<h4 id="设置域名解析"><a href="#设置域名解析" class="headerlink" title="设置域名解析"></a>设置域名解析</h4><p>进入阿里云的云解析，可以为你购买的域名添加解析。<br><img src="/images/hexo_2/dns_jiexi.jpg" alt="域名解析"></p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>记录类型</td>
+<td>选择<code>A</code></td>
+</tr>
+<tr>
+<td>主机记录</td>
+<td>配置两项。一项填写<code>@</code>;另一项填写<code>www</code></td>
+</tr>
+</tbody>
+</table>
+<p>其他的选择默认就行，配置好的结果如下<br><img src="/images/hexo_2/dns_result.jpg" alt="配置结果"></p>
+<p>完成了域名的解析工作之后，在博客的<code>source</code>文件下新建文件名为<code>CNAME</code>的文件，将你的域名不加协议填写进去。例如<code>wluo.me</code>。</p>
+<p>个性化域名的配置就完成了，将博客部署上去就能够通过自己的域名链接过来。</p>
+<h3 id="部署博客"><a href="#部署博客" class="headerlink" title="部署博客"></a>部署博客</h3><p>静态网页可以部署在多种服务器上，Hexo官方提供了多种<a href="https://hexo.io/zh-cn/docs/deployment.html" target="_blank" rel="external">部署</a>方式，详细的部署方式参见官网。<br>我是部署在<code>Github pages</code>上。<br>在<code>_config.yml</code>文件中配置<code>deploy</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">   type: git</div><div class="line">   repo: https://github.com/arobot/arobot.github.io.git</div><div class="line">   branch: master</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客/">博客</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-calendar"></i>
+	<a class="article-category-link" href="/categories/Blog/">Blog</a>
+	</div>
+
+
+      
+
+      
+        <div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode"></div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/12/08/git-study-notebook-one/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          git学习笔记（一）——初识git
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/05/Vim-operation/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Vim操作指南</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="set-up-your-hexo" data-title="引入Hexo，美化你的博客（二）配置Hexo" data-url="http://arobot.github.io/2016/12/06/set-up-your-hexo/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"arobot"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 罗威
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/Retrofit/" style="font-size: 10px;">Retrofit</a> <a href="/tags/blog/" style="font-size: 15px;">blog</a> <a href="/tags/compass/" style="font-size: 10px;">compass</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/sensor/" style="font-size: 10px;">sensor</a> <a href="/tags/tools/" style="font-size: 20px;">tools</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/个人/" style="font-size: 10px;">个人</a> <a href="/tags/传感器/" style="font-size: 10px;">传感器</a> <a href="/tags/博客/" style="font-size: 15px;">博客</a> <a href="/tags/指南针/" style="font-size: 10px;">指南针</a> <a href="/tags/杂文/" style="font-size: 15px;">杂文</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">拼尽了全力&lt;br&gt;才明白什么叫无能为力&lt;br&gt;&lt;br&gt;&lt;br&gt;被击倒在地&lt;br&gt;躺下的滋味是那样的舒爽&lt;br&gt;&lt;br&gt;&lt;br&gt;说到底&lt;br&gt;我仍在路上</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
